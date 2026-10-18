@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transconnect_customer_app/app/theme/app_theme.dart';
+import 'package:transconnect_customer_app/shared/theme/app_theme.dart';
 import 'package:transconnect_customer_app/shared/widgets/panel.dart';
 
 class ServiceCard extends StatelessWidget {

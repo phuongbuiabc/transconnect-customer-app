@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:transconnect_customer_app/app/theme/app_theme.dart';
+import 'package:transconnect_customer_app/shared/theme/app_theme.dart';
 import 'package:transconnect_customer_app/shared/widgets/panel.dart';
-import 'package:transconnect_customer_app/app/session/widgets/email_verification.dart';
-import 'package:transconnect_customer_app/app/session/customer_session_controller.dart';
+import 'package:transconnect_customer_app/features/auth/presentation/screens/email_verification.dart';
+import 'package:transconnect_customer_app/features/auth/presentation/controllers/auth_controller.dart';
 
 class AccountScreen extends StatelessWidget {
-  final CustomerSessionController api;
+  final AuthController api;
   final VoidCallback onLogout;
   const AccountScreen({super.key, required this.api, required this.onLogout});
   @override
@@ -19,7 +19,7 @@ class AccountScreen extends StatelessWidget {
             const Icon(Icons.account_circle_outlined, size: 52, color: red),
             const SizedBox(height: 16),
             Text(
-              api.user?['fullName'] as String? ?? '',
+              api.user?.fullName ?? '',
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -31,7 +31,7 @@ class AccountScreen extends StatelessWidget {
                 color: Color(0xFF636366),
               ),
             ),
-            SelectableText(api.user?['email'] as String? ?? ''),
+            SelectableText(api.user?.email ?? ''),
             const SizedBox(height: 16),
             const Text(
               'SỐ ĐIỆN THOẠI',
@@ -41,7 +41,7 @@ class AccountScreen extends StatelessWidget {
                 color: Color(0xFF636366),
               ),
             ),
-            Text(api.user?['phoneNumber'] as String? ?? 'Chưa cung cấp'),
+            Text(api.user?.phoneNumber ?? 'Chưa cung cấp'),
             const SizedBox(height: 16),
             Chip(
               avatar: Icon(

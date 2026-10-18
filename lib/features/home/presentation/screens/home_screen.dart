@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:transconnect_customer_app/app/theme/app_theme.dart';
+import 'package:transconnect_customer_app/shared/theme/app_theme.dart';
 import 'package:transconnect_customer_app/shared/widgets/panel.dart';
 import 'package:transconnect_customer_app/features/home/presentation/widgets/service_card.dart';
-import 'package:transconnect_customer_app/app/session/customer_session_controller.dart';
+import 'package:transconnect_customer_app/features/auth/presentation/controllers/auth_controller.dart';
 
 class HomeScreen extends StatelessWidget {
-  final CustomerSessionController api;
+  final AuthController api;
   final VoidCallback onOpenAccount;
   const HomeScreen({super.key, required this.api, required this.onOpenAccount});
   @override
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
-        'Xin chào, ' + (api.user?['fullName'] as String? ?? 'bạn'),
+        'Xin chào, ' + (api.user?.fullName ?? 'bạn'),
         style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
       ),
       const SizedBox(height: 16),

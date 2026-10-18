@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:transconnect_customer_app/app/session/customer_session_controller.dart';
-import 'package:transconnect_customer_app/app/theme/app_theme.dart';
+import 'package:transconnect_customer_app/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:transconnect_customer_app/shared/theme/app_theme.dart';
 import 'package:transconnect_customer_app/shared/widgets/panel.dart';
 import 'package:transconnect_customer_app/shared/widgets/notice.dart';
 import 'package:transconnect_customer_app/shared/validation/form_validators.dart';
 
 class EmailVerification extends StatefulWidget {
-  final CustomerSessionController api;
+  final AuthController api;
   const EmailVerification({super.key, required this.api});
   @override
   State<EmailVerification> createState() => _EmailVerificationState();
@@ -39,7 +39,7 @@ class _EmailVerificationState extends State<EmailVerification> {
           const SizedBox(height: 12),
           Text(
             'Nhập mã được gửi đến ' +
-                (widget.api.user?['email'] as String? ?? '') +
+                (widget.api.user?.email ?? '') +
                 ' để hoàn tất tài khoản VIEGO.',
             style: const TextStyle(height: 1.5),
           ),
@@ -79,7 +79,7 @@ class _EmailVerificationState extends State<EmailVerification> {
     try {
       if (resend) {
         await widget.api.publicAction('resend-verification', {
-          'email': widget.api.user!['email'],
+          'email': widget.api.user!.email,
         });
       } else {
         await widget.api.verify(code.text.trim());

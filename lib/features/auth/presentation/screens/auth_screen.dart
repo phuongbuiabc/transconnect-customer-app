@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:transconnect_customer_app/app/session/customer_session_controller.dart';
-import 'package:transconnect_customer_app/app/theme/app_theme.dart';
+import 'package:transconnect_customer_app/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:transconnect_customer_app/shared/theme/app_theme.dart';
 import 'package:transconnect_customer_app/shared/widgets/panel.dart';
 import 'package:transconnect_customer_app/shared/widgets/notice.dart';
 import 'package:transconnect_customer_app/shared/validation/form_validators.dart';
 import 'package:transconnect_customer_app/shared/widgets/brand.dart';
 
 class AuthScreen extends StatefulWidget {
-  final CustomerSessionController api;
+  final AuthController api;
   final String? initialMessage;
   const AuthScreen({super.key, required this.api, this.initialMessage});
   @override

@@ -26,15 +26,18 @@ No secrets belong in dart-define. Use HTTPS in production. Android HTTP is enabl
 
 ## Layout
 
-- lib/main.dart: entry point; app/bootstrap.dart owns the app-wide session controller.
-- lib/app/: MaterialApp, theme, session controller, verification UI, gate and tab navigation.
-- lib/core/: configuration, HTTP transport, errors and secure-storage abstractions.
-- lib/features/: auth forms, home, orders and account screens.
-- lib/shared/: reusable visual components and form validators.
-- test/: HTTP/session regression and small-phone widget checks.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the current feature structure and coding rules, and [AGENTS.md](AGENTS.md) for contributor instructions.
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for the full directory tree, screen locations, dependency boundaries, session safety, sharing strategy and instructions for adding features. Each app remains independently buildable; there are no sibling source imports or new state-management dependencies.
+- `app`: bootstrap, navigation and controller composition.
+- `core`: transport, typed decoding, session lifecycle and secure storage.
+- `features`: typed models, repositories, controllers and presentation.
+- `shared`: theme, reusable widgets and validation.
+- `scripts/Check.ps1`: format check, analyze and tests; optional `-NoRestore`.
+
+Local API defaults: Android native/emulator `http://10.0.2.2:5267`; web/desktop/iOS simulator `http://localhost:5267`. Override with `--dart-define=API_BASE_URL=...` for a real device or deployment. Both apps use the same backend; their account groups and storage keys remain separate.
 
 ## Validation
 
-Analysis/tests/web build results are recorded in the workspace report .reports/transconnect-frontend/plans/customer-app/00-index.md. Native APK/iOS builds and live backend/email end-to-end flow remain unverified. Secure-storage web dependency currently supports standard JavaScript web builds; Wasm is not a validated target.
+Foundation verification (18/10/2026): static analysis and 17 tests passed using a writable copy of the installed SDK. Native builds and live backend/email E2E were not performed.
+
+Run all checks: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Check.ps1`.

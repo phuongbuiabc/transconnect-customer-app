@@ -4,23 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:transconnect_customer_app/app/session/customer_session_controller.dart';
-import 'package:transconnect_customer_app/core/storage/token_store.dart';
+import 'helpers/memory_token_store.dart';
 import 'package:transconnect_customer_app/app/customer_app.dart';
-
-class MemoryStore implements TokenStore {
-  String? value;
-  @override
-  Future<String?> read() async => value;
-  @override
-  Future<void> write(String v) async {
-    value = v;
-  }
-
-  @override
-  Future<void> clear() async {
-    value = null;
-  }
-}
 
 void main() {
   testWidgets('customer home and orders fit a small phone', (tester) async {
