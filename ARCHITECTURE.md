@@ -34,6 +34,8 @@ scripts/Check.ps1
 
 ## Ranh giới code
 
+Cập nhật 20/10: account/EditAccountScreen gọi public AuthController → AuthRepository cho PUT /auth/me, change-password và multipart avatar. Picker chỉ ở UI (image_picker 1.2.2), bytes/fileName chuyển qua controller/repository; core transport/session tạo lại multipart sau 401 với guard generation, không retry mutation theo 5xx. Binary download dùng cùng guard và giữ lỗi JSON theo status. Secret Cloudinary không vào app. iOS có gallery usage text; device acceptance riêng với analyzer/mock tests.
+
 - Luồng feature: screen → controller → repository → SessionClient → ApiClient. Screen chỉ giữ state trình bày/form, không gọi HTTP hay secure storage. JSON thô chỉ ở biên API/form request; user/profile/receipt dùng model typed.
 - `app` là composition root: tạo, truyền và dispose dependency; điều phối liên feature. `core` không import app/features/shared; shared UI không import app/features. Repository không biết widget/controller.
 - AuthController là API công khai của feature auth, được account/home sử dụng cho phiên hiện tại; OTP là UI công khai của auth. Các feature nghiệp vụ không import implementation/controller của nhau. Phối hợp profile và invitations qua app composition.

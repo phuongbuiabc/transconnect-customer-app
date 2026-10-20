@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'edit_account_screen.dart';
 import 'package:transconnect_customer_app/shared/theme/app_theme.dart';
 import 'package:transconnect_customer_app/shared/widgets/panel.dart';
 import 'package:transconnect_customer_app/features/auth/presentation/screens/email_verification.dart';
@@ -12,6 +13,13 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
+      TextButton.icon(
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => EditAccountScreen(api: api)),
+        ),
+        icon: const Icon(Icons.edit_outlined),
+        label: const Text('Sửa thông tin / đổi mật khẩu'),
+      ),
       Panel(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

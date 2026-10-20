@@ -6,7 +6,9 @@ Independent Flutter customer application for TransConnect. Android/iOS scaffolds
 
 Customer registration/login; optional phone; email verification/resend; password recovery/reset; secure persisted sessions; serialized rotating refresh; current identity; logout with server revocation and local cleanup. Vietnamese light UI follows VIEGO crimson/gold grouped surfaces and floating navigation. Home introduces three planned transport services. Orders explicitly states booking is unavailable.
 
-The current backend has no customer trip search, booking, payments or order APIs. This release implements roadmap M5 identity foundation. Google login needs platform OAuth configuration and is deferred. Profile editing and avatar upload are not exposed by current customer APIs.
+The backend has no customer trip search, booking, payments or order APIs. Google UI needs platform OAuth configuration and remains deferred. Updated 20/10: Account → edit name/phone, change current password and select an avatar using image_picker 1.2.2; upload goes through the authenticated backend to Cloudinary. Changing password clears the local session after BE revokes refresh tokens; a wrong current password displays a field error and retains the session.
+
+The backend needs Cloudinary local credentials; no cloud secret is embedded in the app. PNG/JPEG/WebP up to 5 MiB are accepted by the server. iOS includes the gallery usage description; native gallery/device behavior needs live acceptance. Reference: [image_picker](https://pub.dev/packages/image_picker/versions/1.2.2). Test steps/results are in [current test](../../TransConnect-Backend/docs/current-test.md) and [tracker](../../TransConnect-Docs/00-project/progress-tracker.md#closure-implementation-20-10).
 
 ## Run
 
